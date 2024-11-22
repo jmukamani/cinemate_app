@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/movie_provider.dart';
 import '../widgets/movie_card.dart';
+import 'package:go_router/go_router.dart';
 
 class WatchlistScreen extends StatelessWidget {
   const WatchlistScreen({Key? key}) : super(key: key);
@@ -30,7 +31,14 @@ class WatchlistScreen extends StatelessWidget {
             ),
             itemCount: movieProvider.watchlist.length,
             itemBuilder: (context, index) {
-              return MovieCard(movie: movieProvider.watchlist[index]);
+              final movie = movieProvider.watchlist[index];
+
+              return GestureDetector(
+                onTap: () {
+                  context.go('/details/${movie.id}', extra: movie);
+                },
+                child: MovieCard(movie: movie),
+              );
             },
           );
         },

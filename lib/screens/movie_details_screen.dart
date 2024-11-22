@@ -4,12 +4,12 @@ import '../models/movie.dart';
 import '../providers/movie_provider.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
-  const MovieDetailsScreen({Key? key}) : super(key: key);
+  final Movie movie;
+
+  const MovieDetailsScreen({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final movie = ModalRoute.of(context)!.settings.arguments as Movie;
-
     return Scaffold(
       body: CustomScrollView(
         slivers: [
